@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react'
-import { Info } from 'luxon'
 import Header from '../header/Header'
 import Weather from '../weather/Weather'
 import './App.css'
 
 function App() {
-  const days = Info.weekdays('long', { locale: navigator.language })
   const [datas, setDatas] = useState({})
   const [current, setCurrent] = useState({})
   const [city, setCity] = useState('Lyon')
@@ -50,7 +48,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Weather city={ datas.city } datas={ current } days={ days } changeCurrent={ handleCurrent } changeCity={ updateCity } />
+      <Weather city={ datas.city } datas={ current } changeCurrent={ handleCurrent } changeCity={ updateCity } />
     </div>
   )
 }
