@@ -20,7 +20,8 @@ function Days({ onChange }) {
     }
 
     const daysList = days.slice(0, 3).map((day, index) => {
-        let className = index === 0 ? 'on-active' : ''
+        let className = index === 0 ? 'on-active waves-effect waves-light' : 'waves-effect waves-light'
+        
         return (
             <a key={ index } href="#" onClick={ handleClick } data-index={ index } className={ className } >
                 { day }

@@ -19,6 +19,7 @@ function App() {
     currentDay.wind_kph = datas.wind_kph
     currentDay.wind_degree = datas.wind_degree
     currentDay.icon = datas.condition.icon
+    currentDay.text = datas.condition.text
 
     setCurrent(currentDay)
   }
