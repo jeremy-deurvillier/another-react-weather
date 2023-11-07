@@ -9,7 +9,6 @@ function App() {
   const [city, setCity] = useState('Lyon')
 
   function updateCity(value) {
-    console.log(value)
     setCity(value)
   }
 
@@ -28,27 +27,25 @@ function App() {
     selectDay(datas.sets[index].hour[8])
   }
 
-  useEffect(() => {
-    function loadDefaultWeatherData() {
-      let WEATHER_API_KEY = import.meta.env.VITE_WEATHER_API_KEY
+  function loadDefaultWeatherData() {
+    let WEATHER_API_KEY = import.meta.env.VITE_WEATHER_API_KEY
 
-      fetch('https://api.weatherapi.com/v1/forecast.json?key=' + WEATHER_API_KEY + '&q=' + city + '&days=5&aqi=no&alerts=no')
-        .then(res => res.json())
-        .then(datas => {
-          selectDay(datas.forecast.forecastday[0].hour[8])
+    fetch('https://api.weatherapi.com/v1/forecast.json?key=' + WEATHER_API_KEY + '&q=' + city + '&days=3&aqi=no&alerts=no')
+      .then(res => res.json())
+      .then(datas => {
+        selectDay(datas.forecast.forecastday[0].hour[8])
 
-          setDatas({city: datas.location.name, sets: datas.forecast.forecastday})
-        })
-        .catch(error => console.log(error))
-    }
+        setDatas({city: datas.location.name, sets: datas.forecast.forecastday})
+      })
+      .catch(error => alert('Impossible de faire cette recherche (' + city + ')'))
+  }
 
-    loadDefaultWeatherData()
-  }, [])
+  useEffect(() => loadDefaultWeatherData(), [])
 
   return (
     <div className="App">
       <Header />
-      <Weather city={ datas.city } datas={ current } changeCurrent={ handleCurrent } changeCity={ updateCity } />
+      <Weather city={ city } datas={ current } changeCurrent={ handleCurrent } changeCity={ updateCity } api={ loadDefaultWeatherData } />
     </div>
   )
 }
