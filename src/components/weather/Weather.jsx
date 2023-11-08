@@ -1,6 +1,8 @@
 import Days from '../days/Days'
+import Chart from '../Charts/Chart'
+import LinePlot from '../Charts/D3'
 
-function Weather({ city, datas, changeCurrent, changeCity, api }) {
+function Weather({ city, datas, changeCurrent, changeCity, api, hours }) {
 
     function handleChange(e) {
         changeCity(e.target.value)
@@ -31,6 +33,9 @@ function Weather({ city, datas, changeCurrent, changeCity, api }) {
                             Vent { datas.wind_kph }km/h ({ datas.wind_degree }°)
                         </div>
                     </div>
+
+                    <Chart d={ hours } />
+                    {/* <LinePlot data={ hours } /> */}
 
                     <Days onChange={ changeCurrent } />
                 </div>
